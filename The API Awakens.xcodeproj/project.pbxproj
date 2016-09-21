@@ -14,6 +14,7 @@
 		4E34AC911D8D905A0084B1DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E34AC8F1D8D905A0084B1DD /* Main.storyboard */; };
 		4E34AC931D8D905A0084B1DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E34AC921D8D905A0084B1DD /* Assets.xcassets */; };
 		4E34AC961D8D905A0084B1DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E34AC941D8D905A0084B1DD /* LaunchScreen.storyboard */; };
+		4E4335CD1D92B83900B3F48C /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4335CC1D92B83900B3F48C /* PersonModel.swift */; };
 		4E57C6AD1D8D91E000F3BFB3 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57C6AC1D8D91E000F3BFB3 /* APIClient.swift */; };
 		4E57C6AF1D8D91F900F3BFB3 /* StarWarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57C6AE1D8D91F900F3BFB3 /* StarWarsModel.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		4E34AC921D8D905A0084B1DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E34AC951D8D905A0084B1DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E34AC971D8D905A0084B1DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E4335CC1D92B83900B3F48C /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		4E57C6AC1D8D91E000F3BFB3 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4E57C6AE1D8D91F900F3BFB3 /* StarWarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarWarsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +81,7 @@
 			children = (
 				4E57C6AC1D8D91E000F3BFB3 /* APIClient.swift */,
 				4E57C6AE1D8D91F900F3BFB3 /* StarWarsModel.swift */,
+				4E4335CC1D92B83900B3F48C /* PersonModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E34AC8E1D8D905A0084B1DD /* DetailViewController.swift in Sources */,
+				4E4335CD1D92B83900B3F48C /* PersonModel.swift in Sources */,
 				4E34AC8C1D8D905A0084B1DD /* MasterViewController.swift in Sources */,
 				4E57C6AF1D8D91F900F3BFB3 /* StarWarsModel.swift in Sources */,
 				4E34AC8A1D8D905A0084B1DD /* AppDelegate.swift in Sources */,

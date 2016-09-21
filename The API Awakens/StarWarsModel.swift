@@ -9,6 +9,41 @@
 import Foundation
 //Data model
 
-enum DataTypes {
-    case planets, spaceships, vehicles, people, films, species
+enum SWAPI: String {
+    case people, vehicles, spaceships
+}
+
+
+class SWAPIClient: APIClient, APIEndpoint {
+    var baseURL = "http://swapi.co/api/"
+    var configuration: URLSessionConfiguration
+    var session: URLSession {
+        return URLSession(configuration: configuration)
+    }
+    var type: SWAPI
+    
+    init(type: SWAPI, configuration: URLSessionConfiguration) {
+        self.type = type
+        self.configuration = configuration
+    }
+    
+    
+    func fetch()   {
+        print("Trying to fetch")
+         let task = jsonRequestWith(stringURL: "\(baseURL)\(self.type.rawValue)/1") { json, response, error in
+            DispatchQueue.main.async {
+                guard json != nil else {
+                    if let error = error {
+                        print("We have an error: \(error)")
+                    }
+                    return
+                }
+            }
+            if let person = Person(json: json!) {
+                print("The person is \(person)")
+            }
+
+        }
+        task?.resume()
+    }
 }

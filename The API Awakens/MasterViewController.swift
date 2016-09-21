@@ -18,7 +18,8 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print(icons.count)
-
+        let client = SWAPIClient(type: .people, configuration: .default)
+        client.fetch()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +32,7 @@ class MasterViewController: UITableViewController {
     }
 
 
+    
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,7 +67,8 @@ class MasterViewController: UITableViewController {
     }
 
 
-
+    
 
 }
+
 
