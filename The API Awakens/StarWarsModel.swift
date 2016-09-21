@@ -28,9 +28,9 @@ class SWAPIClient: APIClient, APIEndpoint {
     }
     
     
-    func fetch()   {
+    func fetch(completion: @escaping ([String:AnyObject]) -> Void) {
         print("Trying to fetch")
-         let task = jsonRequestWith(stringURL: "\(baseURL)\(self.type.rawValue)/1") { json, response, error in
+         let task = jsonRequestWith(stringURL: "\(baseURL)\(self.type.rawValue)/") { json, response, error in
             DispatchQueue.main.async {
                 guard json != nil else {
                     if let error = error {
@@ -38,12 +38,52 @@ class SWAPIClient: APIClient, APIEndpoint {
                     }
                     return
                 }
+                completion(json!)
             }
-            if let person = Person(json: json!) {
-                print("The person is \(person)")
-            }
-
         }
+        
         task?.resume()
+        
     }
+    
+    func createObjects(arguments: [[String: AnyObject]]) -> [AnyObject]? {
+        switch self.type {
+        case .people:
+            var personArray: [Person] = []
+            for dictionary in arguments {
+                if let person = Person(json: dictionary) {
+                    personArray.append(person)
+                    return personArray as [AnyObject]
+                }
+                
+            }
+            
+            print("The array of Person objects: \(personArray)")
+            
+        case .vehicles:
+            var personArray: [Vehicle] = []
+            for dictionary in arguments {
+                if let person = Vehicle(json: dictionary) {
+                    personArray.append(person)
+                    return personArray as [AnyObject]
+                }
+                
+            }
+            print("The array of Vehicle objects: \(personArray)")
+            
+        case .spaceships:
+            var personArray: [Person] = []
+            for dictionary in arguments {
+                if let person = Person(json: dictionary) {
+                    personArray.append(person)
+                    return personArray as [AnyObject]
+                }
+                
+            }
+            print("The array of Person objects: \(personArray)")
+            
+        }
+        return nil
+    }
+    
 }

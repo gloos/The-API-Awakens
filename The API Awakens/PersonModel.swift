@@ -29,7 +29,7 @@ struct Person {
 }
 
 extension Person {
-    init?(json: [String: Any]) {
+    init?(json: [String: AnyObject]) {
         guard let name = json["name"] as? String, let birthYear = json["birth_year"] as? String, let eyeColor = json["eye_color"] as? String, let gender = json["gender"] as? String, let hairColor = json["hair_color"] as? String, let height = json["height"] as? String, let mass = json["mass"] as? String, let skinColor = json["skin_color"] as? String, let homeworld = json["homeworld"] as? String, let url = json["url"] as? String, let created = json["created"] as? String, let edited = json["edited"] as? String, let films = json["films"] as? [String], let species = json["species"] as? [String], let vehicles = json["vehicles"] as? [String], let starships = json["starships"] as? [String] else {
             return nil
         }

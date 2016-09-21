@@ -10,16 +10,24 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
     var icons = [["Characters": #imageLiteral(resourceName: "icon-characters")], ["Vehicles": #imageLiteral(resourceName: "icon-vehicles")], ["Starships": #imageLiteral(resourceName: "icon-starships")]]
-
+    var type: SWAPI = .people
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print(icons.count)
-        let client = SWAPIClient(type: .people, configuration: .default)
-        client.fetch()
+         SWAPIClient(type: self.type, configuration: .default).fetch() { json in
+            if let jason = json["results"] as? [[String:AnyObject]] {
+                for person in jason {
+                    if let pers = Person(json: person) {
+                        print("The person is \(pers)")
+                    }
+                }
+            }
+
+        }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

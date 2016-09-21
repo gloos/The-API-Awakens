@@ -8,9 +8,9 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class CharacterViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+@IBOutlet weak var charName: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
