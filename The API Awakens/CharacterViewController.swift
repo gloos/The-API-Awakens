@@ -12,8 +12,9 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
     var people: [Person] = [] {
         didSet {
             picker.reloadAllComponents()
-            let bigsmall = smallestAndBiggest(people: people)
-            print(bigsmall)
+            smallestAndBiggest(people: people)
+            self.person = people.first
+
         }
     }
 
@@ -30,6 +31,11 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
 @IBOutlet weak var charName: UILabel!
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var smallestLabel: UILabel!
+    @IBOutlet weak var largestLabel: UILabel!
+    @IBOutlet weak var smallestLabelValue: UILabel!
+    @IBOutlet weak var largestLabelValue: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -96,6 +102,8 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
 
             }
         }
+        self.smallestLabelValue.text = smallest.name
+        self.largestLabelValue.text = biggest.name
         return (smallest, biggest)
     }
 }
