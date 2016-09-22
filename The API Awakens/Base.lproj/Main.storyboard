@@ -38,15 +38,53 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="21" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNF-uK-tlR">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="21" id="3TO-Wy-JCu">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="KQH-Jq-njb" customClass="CharactersTableViewCell" customModule="The_API_Awakens" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="343" height="21"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3TO-Wy-JCu" id="SEu-An-nkd">
-                                            <frame key="frameInset" width="343" height="20.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KQH-Jq-njb" id="IQd-hf-zrV">
+                                            <frame key="frameInset" width="343" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-7T-MOE">
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEq-Hd-Omx">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozx-dR-Ild">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edu-xk-klO">
+                                                            <state key="normal" title="English"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7g-oE-CxY">
+                                                            <state key="normal" title="Metric"/>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fVc-7T-MOE" secondAttribute="trailing" constant="10" id="7OM-NW-N8P"/>
+                                                <constraint firstItem="fVc-7T-MOE" firstAttribute="top" secondItem="IQd-hf-zrV" secondAttribute="topMargin" constant="-9" id="IkQ-Kx-BQX"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="fVc-7T-MOE" secondAttribute="leading" constant="10" id="UiH-Hf-4Dh"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="englishButton" destination="edu-xk-klO" id="Anh-d2-ahN"/>
+                                            <outlet property="metricButton" destination="b7g-oE-CxY" id="MF5-gR-gdW"/>
+                                            <outlet property="traitLabel" destination="aEq-Hd-Omx" id="8ts-hN-75y"/>
+                                            <outlet property="traitValueLabel" destination="Ozx-dR-Ild" id="YMs-Dv-4Bb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="JEX-9P-axG" id="NDj-4q-PGs"/>
+                                    <outlet property="delegate" destination="JEX-9P-axG" id="1Jx-Ze-LRC"/>
+                                </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DTZ-4B-Zqk">
                                 <subviews>
@@ -85,7 +123,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9h-ES-8cH"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9h-ES-8cH">
+                                <connections>
+                                    <outlet property="dataSource" destination="JEX-9P-axG" id="hhX-cl-H4z"/>
+                                    <outlet property="delegate" destination="JEX-9P-axG" id="yJN-SV-1wg"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -108,6 +151,8 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="charName" destination="HnM-va-MX4" id="myH-AV-9hN"/>
+                        <outlet property="picker" destination="a9h-ES-8cH" id="5UG-Ua-uyf"/>
+                        <outlet property="tableView" destination="dNF-uK-tlR" id="U1y-CM-8Xd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

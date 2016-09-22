@@ -86,4 +86,5 @@ class SWAPIClient: APIClient, APIEndpoint {
         return nil
     }
     
+    
 }

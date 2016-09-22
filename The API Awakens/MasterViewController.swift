@@ -17,33 +17,29 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print(icons.count)
-         SWAPIClient(type: self.type, configuration: .default).fetch() { json in
-            if let jason = json["results"] as? [[String:AnyObject]] {
-                for person in jason {
-                    if let pers = Person(json: person) {
-                        print("The person is \(pers)")
-                    }
-                }
-            }
-
-        }
-
+        
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPerson" {
+            SWAPIClient(type: self.type, configuration: .default).fetch() { json in
+                if let jason = json["results"] as? [[String:AnyObject]] {
+                    var people: [Person] = []
+                    for person in jason {
+                        if let pers = Person(json: person) {
+                            people.append(pers)
+                        }
+                    }
+                    let destionationVC = segue.destination as! UINavigationController
+                    let vc = destionationVC.topViewController as! CharacterViewController
+                    vc.people = people
+                }
+                
+            }
+        }
     }
 
     // MARK: - Table View
