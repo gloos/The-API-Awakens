@@ -11,6 +11,14 @@ import UIKit
 class CharactersTableViewCell: UITableViewCell {
     @IBOutlet weak var traitLabel: UILabel!
     @IBOutlet weak var traitValueLabel: UILabel!
-    @IBOutlet weak var englishButton: UIButton!
-    @IBOutlet weak var metricButton: UIButton!
+
+    @IBOutlet weak var cellButtonsStackView: UIStackView!
+    
+    let bornLabel = UILabel()
+
+    let bornLabelValue = UILabel()
+    let englishButton = UIButton(type: .roundedRect)
+    let metricButton = UIButton(type: .roundedRect)
+
+
 }

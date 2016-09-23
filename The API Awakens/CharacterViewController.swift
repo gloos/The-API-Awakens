@@ -68,18 +68,42 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CharactersTableViewCell
         let dict = self.char[indexPath.row]
+        cell.bornLabel.textColor = UIColor(red: 121/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        cell.bornLabelValue.textColor = UIColor.white
+        cell.cellButtonsStackView.addArrangedSubview(cell.bornLabel)
+        cell.cellButtonsStackView.addArrangedSubview(cell.bornLabelValue)
         for (key, value) in dict {
-            cell.traitLabel.text = key
-            cell.traitValueLabel.text = value
+            cell.bornLabel.text = key
+            cell.bornLabelValue.text = value
+            if key == "Height" {                
+                cell.englishButton.setTitle("English", for: .normal)
+                cell.englishButton.tag = indexPath.row
+                cell.englishButton.isEnabled = true
+                cell.englishButton.alpha = 1.0
+                cell.englishButton.addTarget(self, action: #selector(englishButtonPressed(sender:)), for: UIControlEvents.touchUpInside)
+                cell.englishButton.setTitleColor(.white, for: .normal)
+            cell.metricButton.setTitle("Metric", for: .normal)
+                cell.metricButton.tag = indexPath.row
+                cell.metricButton.addTarget(self, action: #selector(metricButtonPressed(sender:)), for: UIControlEvents.touchUpInside)
+                cell.metricButton.isEnabled = false
+                cell.metricButton.alpha = 0.5
+                cell.metricButton.setTitleColor(.white, for: .normal)
+             cell.cellButtonsStackView.addArrangedSubview(cell.englishButton)
+                cell.cellButtonsStackView.addArrangedSubview(cell.metricButton)
+            }
         }
-        print(dict)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characterTraits.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -105,6 +129,33 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
         self.smallestLabelValue.text = smallest.name
         self.largestLabelValue.text = biggest.name
         return (smallest, biggest)
+    }
+    
+    func englishButtonPressed(sender: UIButton) {
+        let indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as! CharactersTableViewCell?, let textFloat = Float(cell.bornLabelValue.text!) {
+            let inches = textFloat * 0.393700787401
+            cell.bornLabelValue.text = String(inches)
+            cell.englishButton.isEnabled = false
+            cell.englishButton.alpha = 0.5
+            cell.metricButton.isEnabled = true
+            cell.metricButton.alpha = 1.0
+        }
+    }
+    
+    func metricButtonPressed(sender: UIButton) {
+        print(sender)
+        let indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as! CharactersTableViewCell?, let textFloat = Float(cell.bornLabelValue.text!) {
+            print(cell)
+            let cms = Int(textFloat * 2.54) + 1
+            print(cms)
+            cell.bornLabelValue.text = String(cms)
+            cell.englishButton.isEnabled = true
+            cell.englishButton.alpha = 1.0
+            cell.metricButton.alpha = 0.5
+            cell.metricButton.isEnabled = false
+        }
     }
 }
 

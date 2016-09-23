@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RMx-3f-FxP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RMx-3f-FxP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -48,32 +48,18 @@
                                             <frame key="frameInset" width="375" height="27"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-7T-MOE">
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEq-Hd-Omx">
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <color key="textColor" red="0.47969347238540649" green="0.807841956615448" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozx-dR-Ild">
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="tintColor" red="0.1050233319" green="0.12517431379999999" blue="0.14196452500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </stackView>
+                                                <stackView opaque="NO" contentMode="left" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kkW-mg-hgV"/>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="fVc-7T-MOE" secondAttribute="trailing" constant="20" id="7OM-NW-N8P"/>
-                                                <constraint firstItem="fVc-7T-MOE" firstAttribute="top" secondItem="IQd-hf-zrV" secondAttribute="topMargin" constant="-9" id="IkQ-Kx-BQX"/>
-                                                <constraint firstItem="fVc-7T-MOE" firstAttribute="leading" secondItem="IQd-hf-zrV" secondAttribute="leading" constant="20" id="c17-kf-MIX"/>
+                                                <constraint firstItem="kkW-mg-hgV" firstAttribute="top" secondItem="IQd-hf-zrV" secondAttribute="top" constant="5" id="7cF-qO-ZPw"/>
+                                                <constraint firstAttribute="bottom" secondItem="kkW-mg-hgV" secondAttribute="bottom" constant="5" id="DBr-A7-VbF"/>
+                                                <constraint firstAttribute="trailing" secondItem="kkW-mg-hgV" secondAttribute="trailing" constant="20" id="MHU-7L-xdu"/>
+                                                <constraint firstItem="kkW-mg-hgV" firstAttribute="leading" secondItem="IQd-hf-zrV" secondAttribute="leading" constant="20" id="q8r-dw-nRX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.08235294118" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="traitLabel" destination="aEq-Hd-Omx" id="8ts-hN-75y"/>
-                                            <outlet property="traitValueLabel" destination="Ozx-dR-Ild" id="YMs-Dv-4Bb"/>
+                                            <outlet property="cellButtonsStackView" destination="kkW-mg-hgV" id="Jg5-BP-Sdh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
