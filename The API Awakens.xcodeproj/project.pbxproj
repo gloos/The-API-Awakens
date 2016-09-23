@@ -18,6 +18,7 @@
 		4E4335CF1D92CB9200B3F48C /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4335CE1D92CB9200B3F48C /* VehicleModel.swift */; };
 		4E57C6AD1D8D91E000F3BFB3 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57C6AC1D8D91E000F3BFB3 /* APIClient.swift */; };
 		4E57C6AF1D8D91F900F3BFB3 /* StarWarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57C6AE1D8D91F900F3BFB3 /* StarWarsModel.swift */; };
+		4E6EF1591D9597240060F1C2 /* StarshipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EF1581D9597240060F1C2 /* StarshipModel.swift */; };
 		4E8DC9891D93FCB50074DB34 /* CharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DC9881D93FCB50074DB34 /* CharactersTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		4E4335CE1D92CB9200B3F48C /* VehicleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 		4E57C6AC1D8D91E000F3BFB3 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4E57C6AE1D8D91F900F3BFB3 /* StarWarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarWarsModel.swift; sourceTree = "<group>"; };
+		4E6EF1581D9597240060F1C2 /* StarshipModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipModel.swift; sourceTree = "<group>"; };
 		4E8DC9881D93FCB50074DB34 /* CharactersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				4E57C6AE1D8D91F900F3BFB3 /* StarWarsModel.swift */,
 				4E4335CC1D92B83900B3F48C /* PersonModel.swift */,
 				4E4335CE1D92CB9200B3F48C /* VehicleModel.swift */,
+				4E6EF1581D9597240060F1C2 /* StarshipModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E34AC8E1D8D905A0084B1DD /* CharacterViewController.swift in Sources */,
+				4E6EF1591D9597240060F1C2 /* StarshipModel.swift in Sources */,
 				4E4335CD1D92B83900B3F48C /* PersonModel.swift in Sources */,
 				4E34AC8C1D8D905A0084B1DD /* MasterViewController.swift in Sources */,
 				4E8DC9891D93FCB50074DB34 /* CharactersTableViewCell.swift in Sources */,
