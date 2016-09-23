@@ -112,7 +112,7 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     //MARK: Helper methods
     
-    func smallestAndBiggest(people: [Person]) -> (Person, Person) {
+    func smallestAndBiggest(people: [Person]) {
         var smallest = people[0]
         var biggest = people[0]
         for person in people {
@@ -128,7 +128,6 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
         }
         self.smallestLabelValue.text = smallest.name
         self.largestLabelValue.text = biggest.name
-        return (smallest, biggest)
     }
     
     func englishButtonPressed(sender: UIButton) {
