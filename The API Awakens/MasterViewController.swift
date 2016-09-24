@@ -33,9 +33,8 @@ class MasterViewController: UITableViewController {
                             people.append(pers)
                         }
                     }
-                    let destionationVC = segue.destination as! UINavigationController
-                    let vc = destionationVC.topViewController as! CharacterViewController
-                    vc.people = people
+                    let destionationVC = segue.destination as! CharacterViewController
+                    destionationVC.people = people
                 }
                 
             }
@@ -49,9 +48,8 @@ class MasterViewController: UITableViewController {
                             print(ship)
                         }
                     }
-                    let destionationVC = segue.destination as! UINavigationController
-                    let vc = destionationVC.topViewController as! SpaceshipViewController
-                    vc.starships  = starships
+                    let destionationVC = segue.destination as! SpaceshipViewController
+                    destionationVC.starships  = starships
                 }
                 
             }
@@ -66,9 +64,8 @@ class MasterViewController: UITableViewController {
                             print(ship)
                         }
                     }
-                    let destionationVC = segue.destination as! UINavigationController
-                    let vc = destionationVC.topViewController as! VehicleViewController
-                    vc.vehicles = vehicles
+                    let destionationVC = segue.destination as! VehicleViewController
+                    destionationVC.vehicles = vehicles
                 }
                 
             }

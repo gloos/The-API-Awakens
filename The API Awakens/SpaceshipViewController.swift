@@ -77,7 +77,9 @@ class SpaceshipViewController: UIViewController, UIPickerViewDataSource, UIPicke
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! StarshipTableViewCell
         let dict = self.ship[indexPath.row]
         cell.bornLabel.textColor = UIColor(red: 121/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        cell.bornLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         cell.bornLabelValue.textColor = UIColor.white
+        cell.bornLabelValue.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         cell.cellButtonsStackView.addArrangedSubview(cell.bornLabel)
         cell.cellButtonsStackView.addArrangedSubview(cell.bornLabelValue)
         for (key, value) in dict {

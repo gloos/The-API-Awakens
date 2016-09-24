@@ -82,6 +82,7 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CharactersTableViewCell
         let dict = self.char[indexPath.row]
         cell.bornLabel.textColor = UIColor(red: 121/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        cell.bornLabel.widthAnchor.constraint(equalToConstant: 100)
         cell.bornLabelValue.textColor = UIColor.white
         cell.cellButtonsStackView.addArrangedSubview(cell.bornLabel)
         cell.cellButtonsStackView.addArrangedSubview(cell.bornLabelValue)
