@@ -20,6 +20,8 @@ protocol APIClient {
     var configuration: URLSessionConfiguration { get set }
     var session: URLSession { get }
     
+    func fetch(completion: @escaping ([String:AnyObject]) -> Void)
+    func fetch(stringURL: String, completion: @escaping ([String:AnyObject]) -> Void)
 
 }
 

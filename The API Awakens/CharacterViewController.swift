@@ -11,6 +11,7 @@ import UIKit
 class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var people: [Person] = [] {
         didSet {
+            
             picker.reloadAllComponents()
             smallestAndBiggest(people: people)
             self.person = people.first
@@ -21,9 +22,18 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
     var characterTraits = ["Born", "Home", "Height", "Eyes", "Hair"]
     var person: Person? {
         didSet {
+            self.loadPlanetObject()
             self.title = person?.name
             self.char = [["Born": person!.birthYear], ["Home": person!.homeworld], ["Height": person!.height], ["Eyes": person!.eyeColor], ["Hair": person!.hairColor]]
             self.tableView.reloadData()
+        }
+    }
+    
+    var planet: Planet? {
+        didSet {
+            if let name = planet?.name {
+                self.person?.homeworld = name
+            }
         }
     }
     var char: [[String: String]] = [["Born": "1"], ["Home": "Earth"], ["Height": "194"], ["Eyes": "Blue"], ["Hair": "Dark"]]
@@ -154,6 +164,14 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
             cell.englishButton.alpha = 1.0
             cell.metricButton.alpha = 0.5
             cell.metricButton.isEnabled = false
+        }
+    }
+    
+    func loadPlanetObject() {
+        SWAPIClient(type: .planet, configuration: .default).fetch(stringURL: (self.person?.homeworld)!) { json in
+            print("json response \(json)")
+            self.planet = Planet(json: json)
+            self.picker.reloadAllComponents()
         }
     }
 }

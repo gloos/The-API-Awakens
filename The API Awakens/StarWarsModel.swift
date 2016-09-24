@@ -10,8 +10,9 @@ import Foundation
 //Data model
 
 enum SWAPI: String {
-    case people, vehicles, spaceships
+    case people, vehicles, spaceships, planet, species, films
 }
+
 
 
 class SWAPIClient: APIClient, APIEndpoint {
@@ -46,45 +47,63 @@ class SWAPIClient: APIClient, APIEndpoint {
         
     }
     
-    func createObjects(arguments: [[String: AnyObject]]) -> [AnyObject]? {
-        switch self.type {
-        case .people:
-            var personArray: [Person] = []
-            for dictionary in arguments {
-                if let person = Person(json: dictionary) {
-                    personArray.append(person)
-                    return personArray as [AnyObject]
+    func fetch(stringURL: String, completion: @escaping ([String:AnyObject]) -> Void) {
+        print("Trying to fetch")
+        let task = jsonRequestWith(stringURL: stringURL) { json, response, error in
+            DispatchQueue.main.async {
+                guard json != nil else {
+                    if let error = error {
+                        print("We have an error: \(error)")
+                    }
+                    return
                 }
-                
+                completion(json!)
             }
-            
-            print("The array of Person objects: \(personArray)")
-            
-        case .vehicles:
-            var personArray: [Vehicle] = []
-            for dictionary in arguments {
-                if let person = Vehicle(json: dictionary) {
-                    personArray.append(person)
-                    return personArray as [AnyObject]
-                }
-                
-            }
-            print("The array of Vehicle objects: \(personArray)")
-            
-        case .spaceships:
-            var personArray: [Person] = []
-            for dictionary in arguments {
-                if let person = Person(json: dictionary) {
-                    personArray.append(person)
-                    return personArray as [AnyObject]
-                }
-                
-            }
-            print("The array of Person objects: \(personArray)")
-            
         }
-        return nil
+        
+        task?.resume()
+        
     }
+    
+//    func createObjects(arguments: [[String: AnyObject]]) -> [AnyObject]? {
+//        switch self.type {
+//        case .people:
+//            var personArray: [Person] = []
+//            for dictionary in arguments {
+//                if let person = Person(json: dictionary) {
+//                    personArray.append(person)
+//                    return personArray as [AnyObject]
+//                }
+//                
+//            }
+//            
+//            print("The array of Person objects: \(personArray)")
+//            
+//        case .vehicles:
+//            var personArray: [Vehicle] = []
+//            for dictionary in arguments {
+//                if let person = Vehicle(json: dictionary) {
+//                    personArray.append(person)
+//                    return personArray as [AnyObject]
+//                }
+//                
+//            }
+//            print("The array of Vehicle objects: \(personArray)")
+//            
+//        case .spaceships:
+//            var personArray: [Person] = []
+//            for dictionary in arguments {
+//                if let person = Person(json: dictionary) {
+//                    personArray.append(person)
+//                    return personArray as [AnyObject]
+//                }
+//                
+//            }
+//            print("The array of Person objects: \(personArray)")
+//            
+//        }
+//        return nil
+//    }
     
     
 }

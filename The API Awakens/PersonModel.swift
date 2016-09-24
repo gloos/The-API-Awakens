@@ -18,7 +18,7 @@ struct Person {
     let height: String
     let mass: String
     let skinColor: String
-    let homeworld: String
+    var homeworld: String
     let url: String
     let created: String
     let edited: String
