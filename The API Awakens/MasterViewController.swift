@@ -10,7 +10,7 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var icons = [["Characters": #imageLiteral(resourceName: "icon-characters")], ["Vehicles": #imageLiteral(resourceName: "icon-vehicles")], ["Spaceships": #imageLiteral(resourceName: "icon-starships")]]
+    var icons = [["Characters": #imageLiteral(resourceName: "icon-characters")], ["Vehicles": #imageLiteral(resourceName: "icon-vehicles")], ["Starships": #imageLiteral(resourceName: "icon-starships")]]
 
 
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class MasterViewController: UITableViewController {
                 }
                 
             }
-        } else if segue.identifier == "showSpaceship" {
+        } else if segue.identifier == "showStarship" {
             SWAPIClient(type: .starships, configuration: .default).fetch() { json in
                 if let jason = json["results"] as? [[String:AnyObject]] {
                     var starships: [Spaceship] = []
@@ -51,12 +51,29 @@ class MasterViewController: UITableViewController {
                     }
                     let destionationVC = segue.destination as! UINavigationController
                     let vc = destionationVC.topViewController as! SpaceshipViewController
-                    vc.starships = starships
+                    vc.starships  = starships
                 }
                 
             }
 
+        } else if segue.identifier == "showVehicle" {
+            SWAPIClient(type: .vehicles, configuration: .default).fetch() { json in
+                if let jason = json["results"] as? [[String:AnyObject]] {
+                    var vehicles: [Vehicle] = []
+                    for vehicle in jason {
+                        if let ship = Vehicle(json: vehicle) {
+                            vehicles.append(ship)
+                            print(ship)
+                        }
+                    }
+                    let destionationVC = segue.destination as! UINavigationController
+                    let vc = destionationVC.topViewController as! VehicleViewController
+                    vc.vehicles = vehicles
+                }
+                
+            }
         }
+
     }
 
     // MARK: - Table View
@@ -87,7 +104,9 @@ class MasterViewController: UITableViewController {
         case 0:
             self.performSegue(withIdentifier: "showPerson", sender: indexPath)
         case 1:
-            self.performSegue(withIdentifier: "showSpaceship", sender: indexPath)
+            self.performSegue(withIdentifier: "showVehicle", sender: indexPath)
+        case 2:
+            self.performSegue(withIdentifier: "showStarship", sender: indexPath)
         default:
             break
         }
