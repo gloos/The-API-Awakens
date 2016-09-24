@@ -10,8 +10,8 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var icons = [["Characters": #imageLiteral(resourceName: "icon-characters")], ["Vehicles": #imageLiteral(resourceName: "icon-vehicles")], ["Starships": #imageLiteral(resourceName: "icon-starships")]]
-    var type: SWAPI = .people
+    var icons = [["Characters": #imageLiteral(resourceName: "icon-characters")], ["Vehicles": #imageLiteral(resourceName: "icon-vehicles")], ["Spaceships": #imageLiteral(resourceName: "icon-starships")]]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class MasterViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPerson" {
-            SWAPIClient(type: self.type, configuration: .default).fetch() { json in
+            SWAPIClient(type: .people, configuration: .default).fetch() { json in
                 if let jason = json["results"] as? [[String:AnyObject]] {
                     var people: [Person] = []
                     for person in jason {
@@ -39,6 +39,23 @@ class MasterViewController: UITableViewController {
                 }
                 
             }
+        } else if segue.identifier == "showSpaceship" {
+            SWAPIClient(type: .starships, configuration: .default).fetch() { json in
+                if let jason = json["results"] as? [[String:AnyObject]] {
+                    var starships: [Spaceship] = []
+                    for spaceship in jason {
+                        if let ship = Spaceship(json: spaceship) {
+                            starships.append(ship)
+                            print(ship)
+                        }
+                    }
+                    let destionationVC = segue.destination as! UINavigationController
+                    let vc = destionationVC.topViewController as! SpaceshipViewController
+                    vc.starships = starships
+                }
+                
+            }
+
         }
     }
 
@@ -63,6 +80,17 @@ class MasterViewController: UITableViewController {
 
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            self.performSegue(withIdentifier: "showPerson", sender: indexPath)
+        case 1:
+            self.performSegue(withIdentifier: "showSpaceship", sender: indexPath)
+        default:
+            break
+        }
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -1,5 +1,5 @@
 //
-//  StarshipModel.swift
+//  SpaceshipModel.swift
 //  The API Awakens
 //
 //  Created by Gary on 23/09/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Startship {
+struct Spaceship {
     let name: String
     let model: String
     let starshipClass: String
@@ -29,7 +29,7 @@ struct Startship {
     let edited: String
 }
 
-extension Startship {
+extension Spaceship {
     init?(json: [String: AnyObject]) {
         guard let name = json["name"] as? String, let model = json["model"] as? String, let starshipClass = json["starship_class"] as? String, let manufacturer = json["manufacturer"] as? String, let length = json["length"] as? String, let costInCredits = json["cost_in_credits"] as? String, let crew = json["crew"] as? String, let passengers = json["passengers"] as? String, let maxAtmospheringSpeed = json["max_atmosphering_speed"] as? String, let hyperdriveRating = json["hyperdrive_rating"] as? String, let mglt = json["MGLT"] as? String, let cargoCapacity = json["cargo_capacity"] as? String, let consumables = json["consumables"] as? String, let url = json["url"] as? String, let created = json["created"] as? String, let edited = json["edited"] as? String, let films = json["films"] as? [String], let pilots = json["pilots"] as? [String] else {
             return nil

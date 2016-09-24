@@ -10,7 +10,7 @@ import Foundation
 //Data model
 
 enum SWAPI: String {
-    case people, vehicles, spaceships, planet, species, films
+    case people, vehicles, starships, planet, species, films
 }
 
 
@@ -90,7 +90,7 @@ class SWAPIClient: APIClient, APIEndpoint {
 //            }
 //            print("The array of Vehicle objects: \(personArray)")
 //            
-//        case .spaceships:
+//        case .starships:
 //            var personArray: [Person] = []
 //            for dictionary in arguments {
 //                if let person = Person(json: dictionary) {
