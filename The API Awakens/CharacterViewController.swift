@@ -11,14 +11,13 @@ import UIKit
 class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var people: [Person] = [] {
         didSet {
-            
             picker.reloadAllComponents()
             smallestAndBiggest(people: people)
             self.person = people.first
-
         }
     }
-
+    
+    // The tableview will be populatd with these default values.
     var characterTraits = ["Born", "Home", "Height", "Eyes", "Hair"]
     var person: Person? {
         didSet {
@@ -28,7 +27,7 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
             self.tableView.reloadData()
         }
     }
-    
+    // Once a Planet object is created, this value will be set.
     var planet: Planet? {
         didSet {
             if let name = planet?.name {
@@ -38,7 +37,7 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     var char: [[String: String]] = [["Born": "1"], ["Home": "Earth"], ["Height": "194"], ["Eyes": "Blue"], ["Hair": "Dark"]]
     @IBOutlet weak var picker: UIPickerView!
-@IBOutlet weak var charName: UILabel!
+
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var smallestLabel: UILabel!
@@ -123,6 +122,7 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     //MARK: Helper methods
     
+    //This determines the smallest and biggest objects and populates data at the bottom of the view controller.
     func smallestAndBiggest(people: [Person]) {
         var smallest = people[0]
         var biggest = people[0]
@@ -141,6 +141,8 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
         self.largestLabelValue.text = biggest.name
     }
     
+    
+    // This converts values.
     func englishButtonPressed(sender: UIButton) {
         let indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
         if let cell = tableView.cellForRow(at: indexPath) as! CharactersTableViewCell?, let textFloat = Float(cell.bornLabelValue.text!) {
@@ -154,12 +156,9 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     func metricButtonPressed(sender: UIButton) {
-        print(sender)
         let indexPath: IndexPath = IndexPath(row: sender.tag, section: 0)
         if let cell = tableView.cellForRow(at: indexPath) as! CharactersTableViewCell?, let textFloat = Float(cell.bornLabelValue.text!) {
-            print(cell)
             let cms = Int(textFloat * 2.54) + 1
-            print(cms)
             cell.bornLabelValue.text = String(cms)
             cell.englishButton.isEnabled = true
             cell.englishButton.alpha = 1.0
@@ -168,11 +167,10 @@ class CharacterViewController: UIViewController, UIPickerViewDataSource, UIPicke
         }
     }
     
+    // This loads the Planet() object from the url returned by the API results.
     func loadPlanetObject() {
         SWAPIClient(type: .planet, configuration: .default).fetch(stringURL: (self.person?.homeworld)!) { json in
-            print("json response \(json)")
             self.planet = Planet(json: json)
-            self.picker.reloadAllComponents()
         }
     }
 }

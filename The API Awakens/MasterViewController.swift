@@ -15,14 +15,12 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print(icons.count)
-        
     }
 
     
     // MARK: - Segues
 
+    // Depending on the initiated segue, we present the relevant VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPerson" {
             SWAPIClient(type: .people, configuration: .default).fetch() { json in
@@ -45,7 +43,6 @@ class MasterViewController: UITableViewController {
                     for spaceship in jason {
                         if let ship = Spaceship(json: spaceship) {
                             starships.append(ship)
-                            print(ship)
                         }
                     }
                     let destionationVC = segue.destination as! SpaceshipViewController
@@ -61,7 +58,6 @@ class MasterViewController: UITableViewController {
                     for vehicle in jason {
                         if let ship = Vehicle(json: vehicle) {
                             vehicles.append(ship)
-                            print(ship)
                         }
                     }
                     let destionationVC = segue.destination as! VehicleViewController

@@ -185,7 +185,7 @@ class SpaceshipViewController: UIViewController, UIPickerViewDataSource, UIPicke
             })
             alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.default, handler: { text in
                 print(alert.textFields?[0].text)
-                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text) {
+                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text), doubleTextValue > 0 {
                     let newValue = textDouble * doubleTextValue
                     cell.bornLabelValue.text = String(newValue)
                     cell.usdButton.isEnabled = false
@@ -193,6 +193,8 @@ class SpaceshipViewController: UIViewController, UIPickerViewDataSource, UIPicke
                     cell.galacticButton.isEnabled = true
                     cell.galacticButton.alpha = 1.0
 
+                } else {
+                    self.presentTextFieldError()
                 }
             }))
             
@@ -209,7 +211,7 @@ class SpaceshipViewController: UIViewController, UIPickerViewDataSource, UIPicke
             })
             alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.default, handler: { text in
                 print(alert.textFields?[0].text)
-                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text) {
+                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text), doubleTextValue > 0 {
                     let newValue = textDouble * doubleTextValue
                     cell.bornLabelValue.text = String(newValue)
                     cell.usdButton.isEnabled = true
@@ -217,6 +219,8 @@ class SpaceshipViewController: UIViewController, UIPickerViewDataSource, UIPicke
                     cell.galacticButton.alpha = 0.5
                     cell.galacticButton.isEnabled = false
                     
+                } else {
+                    self.presentTextFieldError()
                 }
             }))
             
@@ -224,5 +228,13 @@ class SpaceshipViewController: UIViewController, UIPickerViewDataSource, UIPicke
         }
     }
     
+    func presentTextFieldError() {
+        let alert = UIAlertController(title: "Alert", message: "Fill the form correctly. Only positive numbers are accepted.", preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        alert.addAction(action)
+        
+        self.present(alert, animated: true, completion: nil)
+
+    }
 }
 

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//This should connect to any API and return JSON data
+
 public let TRENetworkingErrorDomain = "com.gloos.swapi.NetworkingError"
 public let MissingHTTPResponseError: Int = 10
 public let UnexpectedResponseError: Int = 20
@@ -19,7 +19,6 @@ protocol APIEndpoint {
 protocol APIClient {
     var configuration: URLSessionConfiguration { get set }
     var session: URLSession { get }
-    
     func fetch(completion: @escaping ([String:AnyObject]) -> Void)
     func fetch(stringURL: String, completion: @escaping ([String:AnyObject]) -> Void)
 
@@ -28,7 +27,6 @@ protocol APIClient {
 extension APIClient {
     func jsonRequestWith(stringURL: String, completion: @escaping ([String: AnyObject]?, HTTPURLResponse?, Error?) -> Void) -> URLSessionDataTask? {
         if let request = URL(string: stringURL) {
-            print("The request is to: \(request)")
             let task = session.dataTask(with: request) { data, response, error in
                 guard let HTTPResponse = response as? HTTPURLResponse else {
                     let userInfo = [NSLocalizedDescriptionKey: NSLocalizedString("Missing HTTP Response", comment: "")]
@@ -46,7 +44,6 @@ extension APIClient {
                     case 200:
                         do {
                             let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : AnyObject]
-                            print("The json res is \(json)")
                             completion(json, HTTPResponse, nil)
                         } catch let error as NSError {
                             completion(nil, HTTPResponse, error)

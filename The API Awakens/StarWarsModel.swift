@@ -65,45 +65,4 @@ class SWAPIClient: APIClient, APIEndpoint {
         
     }
     
-//    func createObjects(arguments: [[String: AnyObject]]) -> [AnyObject]? {
-//        switch self.type {
-//        case .people:
-//            var personArray: [Person] = []
-//            for dictionary in arguments {
-//                if let person = Person(json: dictionary) {
-//                    personArray.append(person)
-//                    return personArray as [AnyObject]
-//                }
-//                
-//            }
-//            
-//            print("The array of Person objects: \(personArray)")
-//            
-//        case .vehicles:
-//            var personArray: [Vehicle] = []
-//            for dictionary in arguments {
-//                if let person = Vehicle(json: dictionary) {
-//                    personArray.append(person)
-//                    return personArray as [AnyObject]
-//                }
-//                
-//            }
-//            print("The array of Vehicle objects: \(personArray)")
-//            
-//        case .starships:
-//            var personArray: [Person] = []
-//            for dictionary in arguments {
-//                if let person = Person(json: dictionary) {
-//                    personArray.append(person)
-//                    return personArray as [AnyObject]
-//                }
-//                
-//            }
-//            print("The array of Person objects: \(personArray)")
-//            
-//        }
-//        return nil
-//    }
-    
-    
 }

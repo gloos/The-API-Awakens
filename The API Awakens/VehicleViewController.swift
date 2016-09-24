@@ -76,6 +76,8 @@ class VehicleViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! VehicleTableViewCell
         let dict = self.ship[indexPath.row]
         cell.bornLabel.textColor = UIColor(red: 121/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        cell.bornLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        cell.bornLabelValue.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         cell.bornLabelValue.textColor = UIColor.white
         cell.cellButtonsStackView.addArrangedSubview(cell.bornLabel)
         cell.cellButtonsStackView.addArrangedSubview(cell.bornLabelValue)
@@ -182,7 +184,7 @@ class VehicleViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             })
             alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.default, handler: { text in
                 print(alert.textFields?[0].text)
-                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text) {
+                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text), doubleTextValue > 0 {
                     let newValue = textDouble * doubleTextValue
                     cell.bornLabelValue.text = String(newValue)
                     cell.usdButton.isEnabled = false
@@ -190,6 +192,8 @@ class VehicleViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                     cell.galacticButton.isEnabled = true
                     cell.galacticButton.alpha = 1.0
                     
+                } else {
+                    self.presentTextFieldError()
                 }
             }))
             
@@ -206,7 +210,7 @@ class VehicleViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             })
             alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.default, handler: { text in
                 print(alert.textFields?[0].text)
-                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text) {
+                if let text = alert.textFields?[0].text, let doubleTextValue = Double(text), doubleTextValue > 0 {
                     let newValue = textDouble * doubleTextValue
                     cell.bornLabelValue.text = String(newValue)
                     cell.usdButton.isEnabled = true
@@ -214,6 +218,8 @@ class VehicleViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                     cell.galacticButton.alpha = 0.5
                     cell.galacticButton.isEnabled = false
                     
+                } else {
+                    self.presentTextFieldError()
                 }
             }))
             
@@ -221,6 +227,14 @@ class VehicleViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
     }
     
+    func presentTextFieldError() {
+        let alert = UIAlertController(title: "Alert", message: "Fill the form correctly. Only positive numbers are accepted.", preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        alert.addAction(action)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 }
 
 
